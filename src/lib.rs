@@ -44,7 +44,7 @@ impl Default for ClientConfig {
             connect_timeout: Duration::from_secs(10),
             pool_idle_timeout: Duration::from_secs(90),
             pool_max_idle_per_host: 10,
-            user_agent: format!("jupiter-sdk/{}", env!("CARGO_PKG_VERSION")),
+            user_agent: format!("jup-sdk/{}", env!("CARGO_PKG_VERSION")),
             max_retries: 3,
             retry_delay: Duration::from_millis(500),
             rate_limit_requests_per_second: Some(10), // Jupiter API 限制
