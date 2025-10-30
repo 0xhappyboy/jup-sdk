@@ -7,13 +7,13 @@ use std::time::{SystemTime, UNIX_EPOCH};
 /// Validates a Solana public key string and converts it to a Pubkey
 ///
 /// # Arguments
-/// * `address` - A string slice representing the public key
+/// address - A string slice representing the public key
 ///
 /// # Returns
-/// * `Result<Pubkey, String>` - Ok(Pubkey) if valid, Err(String) if invalid
+/// Result<Pubkey, String> - Ok(Pubkey) if valid, Err(String) if invalid
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let pubkey_str = "So11111111111111111111111111111111111111112";
 /// match validate_pubkey(pubkey_str) {
 ///     Ok(pubkey) => println!("Valid pubkey: {}", pubkey),
@@ -27,14 +27,14 @@ pub fn validate_pubkey(address: &str) -> Result<Pubkey, String> {
 /// Calculates the minimum amount after applying slippage
 ///
 /// # Arguments
-/// * `amount` - The original amount
-/// * `slippage_bps` - Slippage in basis points (1 basis point = 0.01%)
+/// amount - The original amount
+/// slippage_bps - Slippage in basis points (1 basis point = 0.01%)
 ///
 /// # Returns
-/// * `u64` - The amount after slippage deduction
+/// u64 - The amount after slippage deduction
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let amount = 1000000;
 /// let slippage_bps = 50; // 0.5%
 /// let min_amount = cal_slippage_amount(amount, slippage_bps);
@@ -48,14 +48,14 @@ pub fn cal_slippage_amount(amount: u64, slippage_bps: u16) -> u64 {
 /// Formats a raw token amount to human-readable format with decimals
 ///
 /// # Arguments
-/// * `amount` - The raw token amount
-/// * `decimals` - Number of decimal places for the token
+/// amount - The raw token amount
+/// decimals - Number of decimal places for the token
 ///
 /// # Returns
-/// * `String` - Formatted amount string
+/// String - Formatted amount string
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let raw_amount = 1234567890;
 /// let decimals = 9;
 /// let formatted = format_amount(raw_amount, decimals);
@@ -81,14 +81,14 @@ pub fn format_amount(amount: u64, decimals: u8) -> String {
 /// Parses a human-readable amount string into raw token amount
 ///
 /// # Arguments
-/// * `amount_str` - String representation of the amount
-/// * `decimals` - Number of decimal places for the token
+/// amount_str - String representation of the amount
+/// decimals - Number of decimal places for the token
 ///
 /// # Returns
-/// * `Result<u64, String>` - Raw amount if successful, error message if failed
+/// Result<u64, String> - Raw amount if successful, error message if failed
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let amount_str = "1.5";
 /// let decimals = 9;
 /// match parse_amount(amount_str, decimals) {
@@ -131,13 +131,13 @@ pub fn parse_amount(amount_str: &str, decimals: u8) -> Result<u64, String> {
 /// Validates that slippage is within acceptable limits
 ///
 /// # Arguments
-/// * `slippage_bps` - Slippage in basis points
+/// slippage_bps - Slippage in basis points
 ///
 /// # Returns
-/// * `Result<(), String>` - Ok(()) if valid, Err if exceeds maximum
+/// Result<(), String> - Ok(()) if valid, Err if exceeds maximum
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let slippage_bps = 500; // 5%
 /// if let Err(e) = validate_slippage_bps(slippage_bps) {
 ///     println!("Slippage validation failed: {}", e);
@@ -154,14 +154,14 @@ pub fn validate_slippage_bps(slippage_bps: u16) -> Result<(), String> {
 /// Calculates the minimum output amount considering slippage
 ///
 /// # Arguments
-/// * `out_amount` - The expected output amount
-/// * `slippage_bps` - Slippage in basis points
+/// out_amount - The expected output amount
+/// slippage_bps - Slippage in basis points
 ///
 /// # Returns
-/// * `u64` - Minimum acceptable output amount
+/// u64 - Minimum acceptable output amount
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let expected_output = 1000000;
 /// let slippage_bps = 100; // 1%
 /// let min_output = cal_minimum_out_amount(expected_output, slippage_bps);
@@ -174,13 +174,13 @@ pub fn cal_minimum_out_amount(out_amount: u64, slippage_bps: u16) -> u64 {
 /// Checks if a string is a valid mint address
 ///
 /// # Arguments
-/// * `address` - String to validate as a mint address
+/// address - String to validate as a mint address
 ///
 /// # Returns
-/// * `bool` - True if valid mint address
+/// bool - True if valid mint address
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let address = "So11111111111111111111111111111111111111112";
 /// if is_valid_mint_address(address) {
 ///     println!("Valid mint address");
@@ -193,10 +193,10 @@ pub fn is_valid_mint_address(address: &str) -> bool {
 /// Generates a unique nonce based on current time
 ///
 /// # Returns
-/// * `u64` - Unique nonce value
+/// u64 - Unique nonce value
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let nonce = generate_nonce();
 /// println!("Generated nonce: {}", nonce);
 /// ```
@@ -210,15 +210,15 @@ pub fn generate_nonce() -> u64 {
 /// Calculates price impact percentage for a trade
 ///
 /// # Arguments
-/// * `input_amount` - Amount of input token
-/// * `output_amount` - Amount of output token
-/// * `spot_price` - Current spot price of input token in output token terms
+/// input_amount - Amount of input token
+/// output_amount - Amount of output token
+/// spot_price - Current spot price of input token in output token terms
 ///
 /// # Returns
-/// * `f64` - Price impact percentage
+/// f64 - Price impact percentage
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let input_amount = 1000000;
 /// let output_amount = 500000;
 /// let spot_price = 0.6;
@@ -236,13 +236,13 @@ pub fn cal_price_impact(input_amount: u64, output_amount: u64, spot_price: f64) 
 /// Validates transaction signature format
 ///
 /// # Arguments
-/// * `signature` - Transaction signature string
+/// signature - Transaction signature string
 ///
 /// # Returns
-/// * `bool` - True if signature has valid format
+/// bool - True if signature has valid format
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let sig = "5VERv8NMvzbJMEkV8xnrLkEaWRtSz9CosKDYvC7j45R5...";
 /// if validate_transaction_signature(sig) {
 ///     println!("Valid signature format");
@@ -257,16 +257,16 @@ pub fn validate_transaction_signature(signature: &str) -> bool {
 /// Calculates net output amount after deducting fees
 ///
 /// # Arguments
-/// * `quote` - Quote response from swap
-/// * `input_token` - Input token information
-/// * `output_token` - Output token information
-/// * `additional_fees_bps` - Additional fees in basis points
+/// quote - Quote response from swap
+/// input_token - Input token information
+/// output_token - Output token information
+/// additional_fees_bps - Additional fees in basis points
 ///
 /// # Returns
-/// * `Result<u64, String>` - Net output amount after fees
+/// Result<u64, String> - Net output amount after fees
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let net_output = cal_net_output(
 ///     &quote,
 ///     &input_token,
@@ -301,14 +301,14 @@ pub fn cal_net_output(
 /// Estimates annual percentage yield for a trade
 ///
 /// # Arguments
-/// * `input_amount` - Amount of input token
-/// * `output_amount` - Amount of output token
-/// * `input_token` - Input token information
-/// * `output_token` - Output token information
-/// * `time_frame_hours` - Time frame in hours for the trade
+/// input_amount - Amount of input token
+/// output_amount - Amount of output token
+/// input_token - Input token information
+/// output_token - Output token information
+/// time_frame_hours - Time frame in hours for the trade
 ///
 /// # Returns
-/// * `f64` - Estimated APY percentage
+/// f64 - Estimated APY percentage
 ///
 /// # Example
 /// ```
@@ -344,10 +344,10 @@ pub fn estimate_apy(
 /// Builds a HashMap of token addresses to token information
 ///
 /// # Arguments
-/// * `tokens` - Slice of TokenInfo references
+/// tokens - Slice of TokenInfo references
 ///
 /// # Returns
-/// * `HashMap<String, &TokenInfo>` - Mapping of address to token info
+/// HashMap<String, &TokenInfo> - Mapping of address to token info
 ///
 /// # Example
 /// ```
@@ -366,15 +366,15 @@ pub fn build_token_map(tokens: &[TokenInfo]) -> HashMap<String, &TokenInfo> {
 /// Finds tokens by symbol using fuzzy matching
 ///
 /// # Arguments
-/// * `tokens` - Slice of TokenInfo references
-/// * `symbol` - Symbol to search for
-/// * `threshold` - Similarity threshold (0.0 to 1.0)
+/// tokens - Slice of TokenInfo references
+/// symbol - Symbol to search for
+/// threshold - Similarity threshold (0.0 to 1.0)
 ///
 /// # Returns
-/// * `Vec<&TokenInfo>` - Vector of matching tokens
+/// Vec<&TokenInfo> - Vector of matching tokens
 ///
 /// # Example
-/// ```
+/// ```rust
 /// let matches = TokenUtils::find_tokens_by_symbol_fuzzy(
 ///     &tokens,
 ///     "SOL",
