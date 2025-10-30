@@ -40,12 +40,8 @@ impl RouteOptimizer {
     ///
     /// # Arguments
     ///
-    /// * `routes` - Slice of QuoteResponse to evaluate
-    /// * `weights` - RouteWeights configuration for scoring
-    ///
-    /// # Returns
-    ///
-    /// Optional reference to the best QuoteResponse
+    /// routes - Slice of QuoteResponse to evaluate
+    /// weights - RouteWeights configuration for scoring
     ///
     /// # Examples
     ///
@@ -74,12 +70,8 @@ impl RouteOptimizer {
     ///
     /// # Arguments
     ///
-    /// * `route` - The QuoteResponse to score
-    /// * `weights` - Weight configuration for different scoring factors
-    ///
-    /// # Returns
-    ///
-    /// Computed score as f64 where higher values indicate better routes
+    /// route - The QuoteResponse to score
+    /// weights - Weight configuration for different scoring factors
     ///
     /// # Examples
     ///
