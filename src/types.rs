@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, time::Duration};
 
+use crate::tool::cal_slippage_amount;
+
 /// Represents token information including metadata and extensions
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TokenInfo {
@@ -282,7 +284,7 @@ impl SwapExecutionResult {
     /// Gets the minimum output amount considering slippage
     pub fn get_minimum_output(&self) -> u64 {
         let out_amount: u64 = self.quote.out_amount.parse().unwrap_or(0);
-        crate::tool::calculate_slippage_amount(out_amount, self.quote.slippage_bps)
+        cal_slippage_amount(out_amount, self.quote.slippage_bps)
     }
 
     /// Calculates price impact percentage
